@@ -1,6 +1,8 @@
 # gulp-tinypng-nokey
 模拟用户上传和下载的行为，来得到压缩图片，突破使用官网api每月500张限制
 
+github地址：https://github.com/paper/gulp-tinypng-nokey
+
 #### Install
 ```
 $ npm install --save-dev gulp-tinypng-nokey
