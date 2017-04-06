@@ -1,5 +1,5 @@
 # gulp-tinypng-nokey
-User the upload api of tinypng's homeage to compress images, so can use it without key.
+Use the upload api of tinypng's homeage to compress images, so can use it without key.
 
 模拟用户上传和下载的行为，来得到压缩图片，突破使用官网api每月500张限制
 
