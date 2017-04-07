@@ -38,10 +38,10 @@ function gulpPrefixer() {
         }
     });
 
-    stream.on('error', () => {
-        log(': error');
+    stream.on('error', function (err) {
+        log(': error', gutil.colors.red(err));
     })
-        .on('end', () => {
+        .on('end', function () {
             var str = '',
                 total = 0, orginTotal = 0,
                 ratio;
@@ -113,9 +113,11 @@ function tinypng(file, callback) {
                 });
             } else {
                 log('[error]: ', filename + ' ' + results.message);
+                callback(null);
             }
         } else {
             skipImgs.push(filename);
+            callback(null);
         }
     });
 };
