@@ -10,13 +10,21 @@ $ npm install --save-dev gulp-tinypng-nokey
 
 #### Good logs
 for example:
+```
 [14:15:01] gulp-tinypng-nokey : [tinypng request] 1.png
+
 [14:15:04] gulp-tinypng-nokey : [compressing] Ok~ 1.png (26.8%)
+
 [14:15:04] gulp-tinypng-nokey : [tinypng request] 2.jpg
+
 [14:15:07] gulp-tinypng-nokey : [compressing] Ok~ 2.jpg (59.8%)
+
 [14:15:07] gulp-tinypng-nokey : [tinypng request] test.js
+
 [14:15:08] gulp-tinypng-nokey [error]:  test.js This file type is not supported
+
 [14:13:40] gulp-tinypng-nokey : [compress completed] skiped: 0 imgs, compressed: 0 imgs, totalSize: 0%
+```
 
 #### How to use
 ```
