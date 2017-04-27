@@ -39,7 +39,7 @@ function gulpPrefixer() {
     });
 
     stream.on('error', function (err) {
-        log(': error', gutil.colors.red(err));
+        log(': error ', gutil.colors.red(err));
     })
         .on('end', function () {
             var str = '',
@@ -51,7 +51,7 @@ function gulpPrefixer() {
                 orginTotal += e.originSize; 
             });
 
-            ratio = (total/orginTotal).toFixed(3) * 100 + '%';
+            ratio = ((total/orginTotal).toFixed(3) * 100 || 0) + '%';
 
             str += ': ' + gutil.colors.blue('[compress completed] ');
             str += 'skiped: ' + gutil.colors.red(skipImgs.length) + ' imgs, ';
@@ -77,7 +77,6 @@ function tinypng(file, callback) {
             "Connection"  : "keep-alive",
             "Host" : "tinypng.com",
             "DNT" : 1,
-            "Pragma" : "no-cache",
             "Referer" : "https://tinypng.com/",
             "User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0"
         },
