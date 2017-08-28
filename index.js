@@ -48,7 +48,7 @@ function gulpPrefixer() {
 
             compressInfos.forEach(function(e) {
                 total += e.size;
-                orginTotal += e.originSize; 
+                orginTotal += e.originSize;
             });
 
             ratio = ((total/orginTotal).toFixed(3) * 100 || 0) + '%';
@@ -66,7 +66,7 @@ function gulpPrefixer() {
 function tinypng(file, callback) {
     log(': [tinypng request]', file.relative);
     request({
-        url: 'https://tinypng.com/site/shrink',
+        url: 'https://tinypng.com/web/shrink',
         method: "post",
         headers: {
             "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -97,7 +97,7 @@ function tinypng(file, callback) {
                         var output = results.output;
 
                         log(': [compressing]', gutil.colors.green('Ok~ ') +
-                            file.relative 
+                            file.relative
                             + gutil.colors.green(' (' + (output.ratio * 100).toFixed(1) + '%)'));
 
                         compressInfos.push({
