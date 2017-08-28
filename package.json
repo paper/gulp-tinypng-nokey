@@ -1,6 +1,6 @@
 {
   "name": "gulp-tinypng-nokey",
-  "version": "1.1",
+  "version": "1.1.0",
   "description": "gulp plugin to compress png or jpg images using tinypng home page",
   "main": "index.js",
   "repository": {
