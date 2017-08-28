@@ -51,7 +51,7 @@ function gulpPrefixer() {
                 orginTotal += e.originSize;
             });
 
-            ratio = ((total/orginTotal).toFixed(3) * 100 || 0) + '%';
+            ratio = ( parseFloat(total/orginTotal, 10).toFixed(4) * 100 || 0) + '%';
 
             str += ': ' + gutil.colors.blue('[compress completed] ');
             str += 'skiped: ' + gutil.colors.red(skipImgs.length) + ' imgs, ';
@@ -96,7 +96,7 @@ function tinypng(file, callback) {
                     } else {
                         var output = results.output;
 
-                        log(': [compressing]', gutil.colors.green('Ok~ ') +
+                        log(': [compressing]', gutil.colors.green('Ok ') +
                             file.relative
                             + gutil.colors.green(' (' + (output.ratio * 100).toFixed(1) + '%)'));
 

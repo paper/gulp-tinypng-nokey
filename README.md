@@ -45,4 +45,11 @@ need upload files, so it may be unstable.Recommand to move this to the end of ta
 
 ## Reference
 https://github.com/creativeaura/gulp-tinypng  
-http://www.gulpjs.com.cn/docs/writing-a-plugin/guidelines/
+http://www.gulpjs.com.cn/docs/writing-a-plugin/guidelines
+
+## Changelog
+2017-08-28
+1. 感谢贡献者合并代码 @Ende93 @h1orz
+2. 添加了简单的测试例子
+3. 重新提交了npm，最新版本是 1.1
+

@@ -1,11 +1,11 @@
 {
-  "name": "gulp-tinypng-nokey2",
-  "version": "1.0.2",
+  "name": "gulp-tinypng-nokey",
+  "version": "1.1",
   "description": "gulp plugin to compress png or jpg images using tinypng home page",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ende93/gulp-tinypng-nokey"
+    "url": "git://github.com/paper/gulp-tinypng-nokey"
   },
   "scripts": {},
   "files": [
@@ -13,7 +13,7 @@
   ],
   "author": {
     "name": "paper",
-    "url": "https://github.com/paper/"
+    "url": "https://github.com/paper"
   },
   "keywords": [
     "gulp plugin",
@@ -32,17 +32,16 @@
   },
   "license": "MIT",
   "dependencies": {
+    "gulp": "~3.9.1",
     "gulp-util": "~2.2.14",
     "request": "~2.31.0",
     "through2": "~0.4.2"
   },
-  "devDependencies": {
-    
-  },
+  "devDependencies": {},
   "readme": "",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/ende93/gulp-tinypng-nokey/issues"
+    "url": "https://github.com/paper/gulp-tinypng-nokey/issues"
   },
-  "homepage": "https://github.com/ende93/gulp-tinypng-nokey/"
+  "homepage": "https://github.com/paper/gulp-tinypng-nokey/"
 }
