@@ -6,14 +6,17 @@ var request = require('request');
 var path = require('path');
 var fs = require('fs');
 var skipImgs = [],
-    compressInfos = [];
+    compressInfos = [],
+    args = {};
 
 // 常量
 var PLUGIN_NAME = 'gulp-tinypng-nokey';
 var log = gutil.log.bind(null, PLUGIN_NAME);
 
 // 插件级别函数 (处理文件)
-function gulpPrefixer() {
+function gulpPrefixer(arguments) {
+    args = arguments;
+
     // 创建一个让每个文件通过的 stream 通道
     var stream = through.obj(function (file, enc, callback) {
         var self = this;
@@ -28,11 +31,12 @@ function gulpPrefixer() {
 
         if (file.isBuffer()) {
             tinypng(file, function (data) {
-                let tinyFile = file.clone();
-
-                if (data) {
-                    tinyFile.contents = data;
+                if (!data) {
+                    return callback(null);
                 }
+
+                let tinyFile = file.clone();
+                tinyFile.contents = data;
                 return callback(null, tinyFile);
             });
         }
@@ -86,26 +90,48 @@ function tinypng(file, callback) {
 
         if(!error) {
             filename = path.basename(file.path);
-            results = JSON.parse(body);
+            try {
+                results = JSON.parse(body);
+            } catch (e) {
+                log('[error]: ', filename + '\n' + body);
+                results = {};
+            }
 
             if(results.output && results.output.url) {
                 request.get({ url: results.output.url, encoding: null }, function (err, res, body) {
+                    var output = results.output;
+
                     if (err) {
                         skipImgs.push(filename);
                         log('[error]: ', filename + ' ' + err);
                     } else {
-                        var output = results.output;
-
                         log(': [compressing]', gutil.colors.green('Ok ') +
                             file.relative
                             + gutil.colors.green(' (' + (output.ratio * 100).toFixed(1) + '%)'));
 
-                        compressInfos.push({
-                            name: filename,
-                            size: output.size,
-                            ratio: 1 - output.ratio,
-                            originSize: results.input.size
-                        });
+                        if (args.compareDir) {
+                            fs.stat(path.join(args.compareDir, file.relative), (err, stats) => {
+                                if (err) {
+                                    throw error;
+                                }
+
+                                if (stats.size > output.size) {
+                                    compressInfos.push({
+                                        name: filename,
+                                        size: output.size,
+                                        ratio: 1 - output.ratio,
+                                        originSize: results.input.size
+                                    });
+                                    callback(new Buffer(body));
+                                } else {
+                                    skipImgs.push(filename);
+                                    log(': [after compression] ' +
+                                        file.relative
+                                        + gutil.colors.yellow(' the size of the output file is larger'));
+                                    callback(null);
+                                }
+                            });
+                        }
                     }
 
                     callback(err ? null : new Buffer(body));
