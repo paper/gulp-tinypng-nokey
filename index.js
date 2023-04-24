@@ -66,7 +66,7 @@ function gulpPrefixer() {
 function tinypng(file, callback) {
     log(': [tinypng request]', file.relative);
     request({
-        url: 'https://tinypng.com/web/shrink',
+        url: 'https://tinypng.com/backend/opt/shrink',
         method: "post",
         headers: {
             "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
